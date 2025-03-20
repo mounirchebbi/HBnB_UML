@@ -7,7 +7,6 @@ This document outlines the architecture and design of **HBnB Evolution**, a simp
 ---
 
 ## Architecture
-
 HBnB Evolution uses a **layered architecture** with three primary layers:
 
 - **Presentation Layer**: Exposes RESTful APIs for user interaction.
@@ -15,6 +14,9 @@ HBnB Evolution uses a **layered architecture** with three primary layers:
 - **Persistence Layer**: Handles database storage and retrieval.
 
 ### High-Level Package Diagram
+
+![Alt text](https://raw.githubusercontent.com/mounirchebbi/HBnB_UML/refs/heads/main/High_level_diagram.png)
+
 
 The system is organized into three packages, communicating via the **Facade pattern**:
 
@@ -31,6 +33,9 @@ The system is organized into three packages, communicating via the **Facade patt
 ## Business Logic Layer
 
 ### Class Diagram
+
+![Alt text](https://raw.githubusercontent.com/mounirchebbi/HBnB_UML/refs/heads/main/Class_Diagram.png)
+
 
 The core entities include attributes, methods, and relationships:
 
@@ -61,6 +66,8 @@ The core entities include attributes, methods, and relationships:
 ## API Sequence Diagrams
 
 ### 1. User Registration (`POST /users/register`)
+![Alt text](https://raw.githubusercontent.com/mounirchebbi/HBnB_UML/refs/heads/main/sequence_Diagram_user_regustration.png)
+
 **Participants**: Client, `UserAPI`, `ApplicationFacade`, `UserService`, `UserRepository`  
 **Steps**:  
 1. The `Client` sends a `POST /users/register` request to the `UserAPI` with `firstName`, `lastName`, `email`, and `password`.
@@ -72,6 +79,8 @@ The core entities include attributes, methods, and relationships:
 7. The `UserService` passes the saved `User` back through the `UserFacade` and `UserAPI`, which sends a `201 Created` response to the `Client` with user details, excluding the password.
 
 ### 2. Place Creation (`POST /places/create`)
+![Alt text](https://raw.githubusercontent.com/mounirchebbi/HBnB_UML/refs/heads/main/sequence_Diagram_place_creation.png)
+
 **Participants**: Client, `PlaceAPI`, `ApplicationFacade`, `PlaceService`, `PlaceRepository`, `UserRepository`  
 **Steps**:  
 1. The `Client` sends a `POST /places/create` request to the `PlaceAPI` with `title`, `description`, `price`, `latitude`, `longitude`, and `ownerId`.
@@ -83,6 +92,8 @@ The core entities include attributes, methods, and relationships:
 7. The `PlaceService` passes the saved `Place` back through the `PlaceFacade` and `PlaceAPI`, which sends a `201 Created` response to the `Client` with the place details.
 
 ### 3. Review Submission (`POST /reviews/create`)
+![Alt text](https://raw.githubusercontent.com/mounirchebbi/HBnB_UML/refs/heads/main/sequence_Diagram_review_creation.png)
+
 **Participants**: Client, `ReviewAPI`, `ApplicationFacade`, `ReviewService`, `ReviewRepository`, `PlaceRepository`, `UserRepository`  
 **Steps**:  
 1. The `Client` sends a `POST /reviews/create` request to the `ReviewAPI` with `placeId`, `userId`, `rating`, and `comment`.
@@ -95,6 +106,8 @@ The core entities include attributes, methods, and relationships:
 8. The `ReviewService` passes the saved `Review` back through the `ReviewFacade` and `ReviewAPI`, which sends a `201 Created` response to the `Client` with the review details.
 
 ### 4. Fetch Places (`GET /places`)
+![Alt text](https://raw.githubusercontent.com/mounirchebbi/HBnB_UML/refs/heads/main/sequence_Diagram_fetch_places.png)
+
 **Participants**: Client, `PlaceAPI`, `ApplicationFacade`, `PlaceService`, `PlaceRepository`  
 **Steps**:  
 1. The `Client` sends a `GET /places?criteria={location, priceRange, amenities}` request to the `PlaceAPI` with search criteria: `location`, `priceRange`, and `amenities`.
